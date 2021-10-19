@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:36:42 by unix              #+#    #+#             */
-/*   Updated: 2021/10/19 18:44:48 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/19 18:52:11 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	char	*line;
 	int	i = 0;
 
-	fp = open("./text1", 'r');
+	fp = open("./text", 'r');
 	if (!fp)
 	{
 		printf("FILE NAME IST HERE BRO\n");
