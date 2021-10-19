@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/18 21:08:08 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/19 18:45:50 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,8 @@ char	*ft_set_buffer(void)
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
-	buff[BUFFER_SIZE] = '\0';
+	ft_memset(buff, 0, BUFFER_SIZE + 1);
 	return (buff);
-}
-
-int	ft_read_buff(int fd, char *buff, int size)
-{
-	return (0);
 }
 
 char	*ft_add(char *src, char *new, size_t len)
@@ -52,32 +47,38 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	static char	*buf;
-	static char	*res;
+	char	*res;
+	int		read_res;
 
 	if (!buffer)
 		buffer = ft_set_buffer();
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(buf, '\n')) // пока в буффере нет /n читаем в результат
+	if (!ft_strchr(buf, '\n'))
 	{
-		printf("Нет \\n, копирую буфер\n");
-		if (read(fd, buffer, BUFFER_SIZE) < 1)
-			return (NULL);
-		printf("Скопировал\n");
-		if (!ft_strchr(buffer, '\n'))
+		res = ft_add(NULL, buf, ft_strlen(buf));
+		ft_memset(buffer, 0, BUFFER_SIZE);
+		while (1)
 		{
-			printf("Скопировал вот буфер - {%s}\n", buffer);
-			res = ft_add(res, buffer, BUFFER_SIZE);
-			printf("И в результат записал - {%s}\n", res);
+			if (read(fd, buffer, BUFFER_SIZE) < 1)
+			{
+				if (ft_strlen(res) > 0)
+					return (ft_add(res, "\n", 1));
+				else
+					return (NULL);
+			}
+			if (!ft_strchr(buffer, '\n'))
+				res = ft_add(res, buffer, BUFFER_SIZE);
+			else
+			{
+				buf = buffer;
+				break ;
+			}
 		}
-		else
-			printf("Нашел, ничего не пишу\n");
-		buf = buffer;
 	}
-	printf("\\n есть надо скопировать до него - {%s}\n", buf);
+	else
+		res = NULL;
 	res = ft_add(res, buf, ft_strchr(buf, '\n') - buf + 1);
-	printf("Скопировал - {%s}\n", res);
 	buf += ft_strchr(buf, '\n') - buf + 1;
-	printf("Теперь буф - {%s}\n", buf);
 	return (res);
 }

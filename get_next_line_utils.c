@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/18 20:34:47 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/19 18:02:59 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,20 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	}
 	*d = '\0';
 	return (buff_size);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char			*temp;
+	unsigned char	m;
+
+	m = (unsigned char)c;
+	temp = (char *)b;
+	while (len > 0)
+	{
+		*temp = m;
+		temp++;
+		len--;
+	}
+	return (b);
 }

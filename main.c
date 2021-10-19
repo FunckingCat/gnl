@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:36:42 by unix              #+#    #+#             */
-/*   Updated: 2021/10/18 20:52:39 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/19 18:44:48 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(void)
 {
 	int		fp;
 	char	*line;
+	int	i = 0;
 
 	fp = open("./text1", 'r');
 	if (!fp)
@@ -24,16 +25,16 @@ int	main(void)
 		exit(0);
 	}
 	line = get_next_line(fp);
-	printf("%s\n--------------------\n", line);
+	//printf("RETURNED - {%s}", line);
 	// line = get_next_line(fp);
-	// printf("%s\n--------------------\n", line);
+	// printf("RETURNED - {%s}--------------------\n", line);
 	// line = get_next_line(fp);
-	// printf("%s\n--------------------\n", line);
-	// while (line)
-	// {
-	// 	printf("%s", line);
-	// 	line = get_next_line(fp);
-	// }
+	// printf("RETURNED - {%s}--------------------\n", line);
+	while (line)
+	{
+		printf("%d. %s", 1 + i++, line);
+		line = get_next_line(fp);
+	}
 	close(fp);
 	return (1);
 }
