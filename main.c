@@ -6,7 +6,7 @@
 /*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:36:42 by unix              #+#    #+#             */
-/*   Updated: 2021/10/20 13:38:15 by tyamcha          ###   ########.fr       */
+/*   Updated: 2021/10/20 15:09:40 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(void)
 {
 	int		fp;
 	char	*line;
-	int	i = 0;
+	int		i = 0;
 
 	fp = open("./text", 'r');
 	if (!fp)
@@ -25,11 +25,6 @@ int	main(void)
 		exit(0);
 	}
 	line = get_next_line(fp);
-	//printf("RETURNED - {%s}", line);
-	// line = get_next_line(fp);
-	// printf("RETURNED - {%s}--------------------\n", line);
-	// line = get_next_line(fp);
-	// printf("RETURNED - {%s}--------------------\n", line);
 	while (line)
 	{
 		printf("%d. %s\n", 1 + i++, line);

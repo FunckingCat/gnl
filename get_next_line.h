@@ -6,7 +6,7 @@
 /*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:37:18 by unix              #+#    #+#             */
-/*   Updated: 2021/10/20 13:30:45 by tyamcha          ###   ########.fr       */
+/*   Updated: 2021/10/20 15:09:25 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+// #ifndef BUFFER_SIZE
+// # define BUFFER_SIZE 42
+// #endif
