@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/19 18:02:59 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/20 15:05:35 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,65 +66,19 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	n;
+	char	*res;
+	size_t	res_len;
 
-	n = 0;
-	if (src == NULL)
-	{
-		*dst = '\0';
-		return (0);
-	}
-	if (size == 0)
-	{
-		return (ft_strlen(src));
-	}
-	while (*src && --size > 0 && n++ > -1)
-		*dst++ = *src++;
-	*dst = '\0';
-	return (ft_strlen(src - n));
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
-{
-	char		*d;
-	const char	*s;
-	size_t		n;
-	int			buff_size;
-
-	d = dst;
-	s = src;
-	n = 0;
-	buff_size = ft_strlen(src) + ft_strlen(dst);
-	if (size < ft_strlen(dst))
-		buff_size = ft_strlen(src) + size;
-	while (*d && n++ < size)
-		d++;
-	if (n >= size)
-		return (buff_size);
-	while (*s)
-	{
-		if (n++ + 1 >= size)
-			break ;
-		*d++ = *s++;
-	}
-	*d = '\0';
-	return (buff_size);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	char			*temp;
-	unsigned char	m;
-
-	m = (unsigned char)c;
-	temp = (char *)b;
-	while (len > 0)
-	{
-		*temp = m;
-		temp++;
-		len--;
-	}
-	return (b);
+	if (!s1 && !s2)
+		return (NULL);
+	res_len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	res = (char *)malloc(res_len);
+	if (!res)
+		return (NULL);
+	ft_memmove(res, s1, ft_strlen(s1));
+	ft_memmove(res + ft_strlen(s1), s2, ft_strlen(s2));
+	res[res_len - 1] = '\0';
+	return (res);
 }

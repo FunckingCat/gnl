@@ -6,82 +6,93 @@
 /*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/20 10:35:59 by tyamcha          ###   ########.fr       */
+/*   Updated: 2021/10/20 15:04:09 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_set_buffer(void)
-{
-	char	*buff;
-
-	buff = malloc(BUFFER_SIZE + 1);
-	if (!buff)
-		return (NULL);
-	ft_memset(buff, 0, BUFFER_SIZE + 1);
-	return (buff);
-}
-
-char	*ft_add(char *src, char *new, size_t len)
+char	*ft_move_to_nl(char	*rd)
 {
 	char	*res;
+	int		i;
+	int		j;
 
-	res = malloc(ft_strlen(src) + len + 1);
+	i = 0;
+	j = 0;
+	if (!rd)
+		return (NULL);
+	while (rd[i] && rd[i] != '\n')
+		i++;
+	if (!rd[i])
+	{
+		free(rd);
+		return (0);
+	}
+	res = malloc(sizeof(char) * ((ft_strlen(rd) - i) + 1));
+	if (!res)
+		return (0);
+	i++;
+	while (rd[i])
+		res[j++] = rd[i++];
+	res[j] = '\0';
+	free(rd);
+	return (res);
+}
+
+char	*ft_getres(char *rd)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	if (rd[i] == '\0')
+		return (NULL);
+	while (rd[i] && rd[i] != '\n')
+		i++;
+	res = malloc(i + 2);
 	if (!res)
 		return (NULL);
-	if (!new)
-		return (src);
-	if (!src)
-		ft_strlcpy(res, new, len + 1);
-	else
-	{
-		ft_strlcpy(res, src, ft_strlen(src) + 1);
-		ft_strlcpy(res + ft_strlen(res), new, len + 1);
-		free(src);
-	}
+	ft_memmove(res, rd, i);
+	if (rd[i] == '\n')
+		res[i++] = '\n';
+	res[i] = '\0';
 	return (res);
+}
+
+char	*ft_get_buffer(int fd, char *buffer)
+{
+	char	buf[BUFFER_SIZE + 1];
+	int		r;
+	char	*tmp;
+
+	r = read(fd, buf, BUFFER_SIZE);
+	while (r > 0)
+	{
+		buf[r] = '\0';
+		tmp = buffer;
+		buffer = ft_strjoin(tmp, buf);
+		free(tmp);
+		if (ft_strchr(buffer, '\n'))
+		{
+			break ;
+		}
+		r = read(fd, buf, BUFFER_SIZE);
+	}
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
-	static char	*buf;
 	char		*res;
 
-	if (!buffer)
-		buffer = ft_set_buffer();
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = ft_get_buffer(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	if (!ft_strchr(buf, '\n'))
-	{
-		res = ft_add(NULL, buf, ft_strlen(buf));
-		ft_memset(buffer, 0, BUFFER_SIZE);
-		while (1)
-		{
-			if (read(fd, buffer, BUFFER_SIZE) < 1)
-			{
-				if (ft_strlen(res) > 0)
-					return (res);
-				else
-				{
-					if (buffer)
-						free(buffer);
-					return (NULL);
-				}
-			}
-			if (!ft_strchr(buffer, '\n'))
-				res = ft_add(res, buffer, BUFFER_SIZE);
-			else
-			{
-				buf = buffer;
-				break ;
-			}
-		}
-	}
-	else
-		res = NULL;
-	res = ft_add(res, buf, ft_strchr(buf, '\n') - buf + 1);
-	buf += ft_strchr(buf, '\n') - buf + 1;
+	res = ft_getres(buffer);
+	buffer = ft_move_to_nl(buffer);
 	return (res);
 }

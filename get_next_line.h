@@ -6,14 +6,12 @@
 /*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:37:18 by unix              #+#    #+#             */
-/*   Updated: 2021/10/20 10:24:31 by tyamcha          ###   ########.fr       */
+/*   Updated: 2021/10/20 13:30:45 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-//# define BUFFER_SIZE 42
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,5 +26,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
 
+#endif
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
 #endif

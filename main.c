@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:36:42 by unix              #+#    #+#             */
-/*   Updated: 2021/10/19 18:52:11 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/20 13:38:15 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ int	main(void)
 	// printf("RETURNED - {%s}--------------------\n", line);
 	while (line)
 	{
-		printf("%d. %s", 1 + i++, line);
+		printf("%d. %s\n", 1 + i++, line);
+		free(line);
 		line = get_next_line(fp);
 	}
+	free(line);
 	close(fp);
+	sleep(200000);
 	return (1);
 }
 
