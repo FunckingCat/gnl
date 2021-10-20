@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:37:18 by unix              #+#    #+#             */
-/*   Updated: 2021/10/19 18:03:09 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/20 10:24:31 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 42
+//# define BUFFER_SIZE 42
 
 # include <stdio.h>
 # include <stdlib.h>

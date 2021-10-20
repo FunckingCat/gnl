@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/19 18:54:15 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/20 10:35:59 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_set_buffer(void)
 char	*ft_add(char *src, char *new, size_t len)
 {
 	char	*res;
-	
+
 	res = malloc(ft_strlen(src) + len + 1);
 	if (!res)
 		return (NULL);
@@ -47,8 +47,7 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	static char	*buf;
-	char	*res;
-	int		read_res;
+	char		*res;
 
 	if (!buffer)
 		buffer = ft_set_buffer();
@@ -63,9 +62,13 @@ char	*get_next_line(int fd)
 			if (read(fd, buffer, BUFFER_SIZE) < 1)
 			{
 				if (ft_strlen(res) > 0)
-					return (ft_add(res, "\n", 1));
+					return (res);
 				else
+				{
+					if (buffer)
+						free(buffer);
 					return (NULL);
+				}
 			}
 			if (!ft_strchr(buffer, '\n'))
 				res = ft_add(res, buffer, BUFFER_SIZE);
