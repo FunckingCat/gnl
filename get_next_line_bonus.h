@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:37:18 by unix              #+#    #+#             */
-/*   Updated: 2021/10/26 16:47:50 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/27 13:29:20 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,7 +28,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
 
-#ifndef BUFFER_SIZE
+// #ifndef BUFFER_SIZE
 // # define BUFFER_SIZE 42
-	# define OPEN_MAX 2048
-#endif
+// #endif

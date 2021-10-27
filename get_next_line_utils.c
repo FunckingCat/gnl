@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/26 16:38:20 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/27 13:30:32 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res[OPEN_MAX];
+	char	*res;
 	size_t	res_len;
 
 	if (!s1 && !s2)

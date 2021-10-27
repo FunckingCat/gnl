@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/10/26 16:49:35 by unix             ###   ########.fr       */
+/*   Updated: 2021/10/27 13:29:38 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*ft_get_buffer(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[OPEN_MAX];
+	static char	*buffer[10400];
 	char		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
